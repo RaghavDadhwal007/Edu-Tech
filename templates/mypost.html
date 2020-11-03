@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Your Post
+{% endblock %}
+
+{% block body %}
+    <div class="container pt-5">
+
+        <h2 class="heading">{{ cat }}</h2>
+
+        <div class="row mt-5 mb-5">
+            {% for dt in data %}
+            <div class="col-md-3">
+                <img src="{{ dt.image.url}}" class="book-img">
+                <h5 class="text-center pt-3">{{ dt.title }}</h5>
+                <p class="text-center book-subheading">{{ dt.author }}</p>
+                <a href="{{ dt.document.url }}" class="btn btn-primary book-btn" download>Download</a>
+                <form action="{% url 'delete' dt.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-primary book-btn">Delete</button>
+                </form>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

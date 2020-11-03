@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block title %}
+ Detail
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+            <div class="row">
+                <div class="col-sm-12 col-md-7">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                            <h2>{{ data.title }}</h2>
+                            <h5>{{ data.description }}</h5>
+                            <h5>{{ data.document }}</h5>
+                            <h5>{{ data.uploaded_at }}</h5>
+                            <h5>{{ data.category }}</h5>
+                            <h5>{{ data.author }}</h5>
+                            <h5>{{ data.image }}</h5>
+                            <img src="{{ data.image.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+                            <a href="{{ data.document.url }}">{{ data.document }}</a>
+                            <form action="{% url 'delete' data.id %}" method="post"  style="display: inline;">
+                                {% csrf_token %}
+                                <p>dsd</p>
+                                <input type="hidden" value="{{ data.id }}">
+                                <button type="submit" value="Delete" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}

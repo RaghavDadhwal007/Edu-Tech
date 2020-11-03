@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    All Books
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="container pt-5">
+        <h2 class="heading">All Uploads</h2>
+
+        <div class="row mt-5 mb-5">
+            {% for dt in data %}
+            <div class="col-md-3">
+
+                <img src="{{ dt.image.url}}" class="book-img">
+                <h5 class="text-center pt-3">{{ dt.title }}</h5>
+                <p class="text-center book-subheading">{{ dt.author }}</p>
+                <a href="{{ dt.document.url }}" class="btn btn-primary book-btn" download>Download</a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

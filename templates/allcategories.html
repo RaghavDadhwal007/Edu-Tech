@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Your Post
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="row">
+            <ul>
+                {% for posts in category_data %}
+                    <li><a href="{% url 'mybooks' posts.Category_id %}">{{ posts.Category_name }}</a></li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}

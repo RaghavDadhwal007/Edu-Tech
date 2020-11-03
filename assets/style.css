@@ -1,0 +1,37 @@
+.timeline {
+    background: url(img/bg-timeline.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #fff;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+
+.heading::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: #1b8bcc;
+    margin-top: 3px;
+}
+
+.book-img {
+    display: block;
+    width: 170px;
+    height: 240px;
+    margin: 0 auto;
+}
+
+.book-subheading {
+    color: #969696;
+    margin-top: -5px;
+}
+
+.book-btn {
+    width: 60%;
+    display: block;
+    margin: auto;
+}

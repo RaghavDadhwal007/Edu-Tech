@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+
+{% block dashboard %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Categories
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="{% url 'create_post' %}">Create Category</a>
+      <a class="dropdown-item" href="{% url 'allbooks' %}">Manage Categories</a>
+    </div>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Books
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="{% url 'create_post' %}">Add a New Book</a>
+      <a class="dropdown-item" href="{% url 'allbooks' %}">Manage Books</a>
+    </div>
+  </li>
+{% endblock %}
+
+
+
+
+
+{% block body %}
+{% if request.session.authenticate == True %}
+<div class="container main-content " style="margin-top: 80px;">
+	<h3>Welcome, {{ request.session.username }}</h3>
+	<hr>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="thumbnail text-center" style="padding-bottom:18px;">
+				<h4>Manage Categories</h4>
+				<a href="{% url 'allcategories' %}" class="btn btn-success"> Manage Categories</a>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+        <div class="col-md-4">
+			<div class="thumbnail text-center" style="padding-bottom:18px;">
+				<h4>Manage Books</h4>
+				<a href="{% url 'allbooks' %}" class="btn btn-primary"> Manage Books</a>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="thumbnail text-center" style="padding-bottom:18px;">
+				<h4>Logout / Sign out</h4>
+				<a href="{% url 'logout' %}" class="btn btn-danger">Click here to Logout</a>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

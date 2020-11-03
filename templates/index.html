@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} EduTech | Free Online Book Shop {% endblock %}</title>
+
+    <!-- Bootstrap 4-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom Files-->
+    <link rel="stylesheet" href="/assets/style.css">
+    <base href="/">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+
+            <a class="navbar-brand" href="#"><img src="assets/img/logo.webp" /></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% block dashboard %}
+                    {% endblock %}
+                    {% for dt2 in data2 %}
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'mybooks' dt2.Category_id %}">{{ dt2.Category_name}}</a>
+                        </li>
+                    {% endfor %}
+                    {% if request.session.authenticate %}
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'login' %}">Login </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block body %}
+    <div class="timeline ">
+        <div class="container">
+            <h1 class="text-center ">Welcome to Edutech Book Shop</h1>
+            <h3 class="text-center ">Free Online Book Store</h3>
+        </div>
+    </div>
+
+
+    <div class="container pt-5">
+        <h2 class="heading">All Uploads</h2>
+        
+        <div class="row mt-5 mb-5">
+            {% for dt in data %}
+            <div class="col-md-3">
+
+
+                <img src="{{ dt.image.url}}" class="book-img">
+                <h5 class="text-center pt-3">{{ dt.title }}</h5>
+                <p class="text-center book-subheading">{{ dt.author }}</p>
+                <a href="{{ dt.document.url }}" class="btn btn-primary book-btn" download>Download</a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
